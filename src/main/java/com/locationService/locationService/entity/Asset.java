@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -20,6 +21,7 @@ public class Asset {
     private String description;
     @OneToOne(mappedBy = "asset")
     private ReaderManagement manager;
+    @OneToOne(targetEntity = Tag.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "tag_id", referencedColumnName = "id")
     private Tag tag;
 }

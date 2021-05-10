@@ -36,10 +36,14 @@ public class RSSIReportListener implements TagReportListener {
                     St4 = movingAvarage(St4, tag.getPeakRssiInDbm());
             }
 
-
+            calculateCoordinates(St1,St2, St3, St4);
         }
     }
 
+    private void calculateCoordinates(double st1, double st2, double st3, double st4) {
+        double x;
+        double y;
+    }
 
 
     private static double movingAvarage(double St, double Yt) {

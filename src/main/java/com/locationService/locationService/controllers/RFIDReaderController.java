@@ -24,13 +24,13 @@ public class RFIDReaderController {
 
         List<RFIDReader> readers = rfidReaderService.getAllReaders();
 
-        return ResponseEntity.ok("Readers: ");
+        return ResponseEntity.ok(readers);
     }
 
-    @PostMapping("/rfidreader")
+    @PostMapping("/rfidreader" )
     public ResponseEntity<?> createNewReader( @RequestBody RFIDReaderDTO readerRequest){
         RFIDReader reader = rfidReaderService.createNewReader(readerRequest);
-        return ResponseEntity.ok("Create reader: " + reader);
+        return ResponseEntity.ok(reader);
     }
 
     @GetMapping("/rfidreader/{id}")

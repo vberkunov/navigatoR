@@ -1,5 +1,6 @@
 package com.locationService.locationService.controllers;
 
+import com.locationService.locationService.dto.AssetDTO;
 import com.locationService.locationService.dto.ReaderManagerDTO;
 import com.locationService.locationService.entity.ReaderManagement;
 import com.locationService.locationService.service.implementation.ReaderManagerServiceImpl;
@@ -23,13 +24,13 @@ public class ReaderManagerController {
 
         List<ReaderManagement> manager = managerService.getAllReaderManager();
 
-        return ResponseEntity.ok("Readers: ");
+        return ResponseEntity.ok(manager);
     }
 
     @PostMapping("/manager")
     public ResponseEntity<?> createNewManager( @RequestBody ReaderManagerDTO managerRequest){
-        managerService.createNewManagerReader(managerRequest);
-        return ResponseEntity.ok("Create reader: ");
+        ReaderManagement manager = managerService.createNewManagerReader(managerRequest);
+        return ResponseEntity.ok(manager);
     }
 
     @GetMapping("/manager/{id}")
@@ -44,9 +45,9 @@ public class ReaderManagerController {
         return ResponseEntity.ok("Create reader: ");
     }
 
-    @GetMapping("/manager/asset")
-    public ResponseEntity<?> getAssetPosition(){
-        managerService.getAssetPosition();
-        return ResponseEntity.ok("Create reader: ");
+    @GetMapping("/manager/asset/{epc}")
+    public ResponseEntity<?> getAssetPosition(@PathVariable("epc") String epc){
+        AssetDTO assetDTO = managerService.getAssetPositionByEpc(epc);
+        return ResponseEntity.ok(assetDTO);
     }
 }

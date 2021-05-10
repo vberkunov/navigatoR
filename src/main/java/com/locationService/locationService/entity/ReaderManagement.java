@@ -19,7 +19,7 @@ public class ReaderManagement {
     @OneToOne(targetEntity = RFIDReader.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "reader_id", referencedColumnName = "id")
     private RFIDReader reader;
-    @OneToOne(targetEntity = Tag.class, cascade = CascadeType.ALL)
+    @OneToOne(targetEntity = Asset.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "asset_id", referencedColumnName = "id")
     private Asset asset;
 

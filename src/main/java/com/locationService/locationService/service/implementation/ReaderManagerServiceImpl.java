@@ -1,6 +1,7 @@
 package com.locationService.locationService.service.implementation;
 
 import com.impinj.octane.OctaneSdkException;
+import com.locationService.locationService.dto.AssetDTO;
 import com.locationService.locationService.dto.ReaderManagerDTO;
 import com.locationService.locationService.entity.Asset;
 import com.locationService.locationService.entity.RFIDReader;
@@ -31,7 +32,7 @@ public class ReaderManagerServiceImpl {
         return null;
     }
 
-    public void createNewManagerReader(ReaderManagerDTO managerRequest)  {
+    public ReaderManagement createNewManagerReader(ReaderManagerDTO managerRequest)  {
         RFIDReader reader = readerRepository.findById(managerRequest.getReader_id()).orElse(null);
         Tag tag = Tag.builder()
                 .epc(managerRequest.getEpc())
@@ -52,7 +53,7 @@ public class ReaderManagerServiceImpl {
         } catch (OctaneSdkException e) {
             e.printStackTrace();
         }
-
+        return manager;
     }
 
     public void getReaderManagerById(Long id) {
@@ -61,7 +62,13 @@ public class ReaderManagerServiceImpl {
     public void updateReaderManagerById(Long id) {
     }
 
-    public void getAssetPosition() {
 
+
+    public AssetDTO getAssetPositionByEpc(String epc) {
+        AssetDTO tag = AssetDTO.builder()
+                .x(2.0)
+                .y(1.75)
+                .build();
+        return tag;
     }
 }
